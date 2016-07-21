@@ -1,25 +1,149 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pp3-bx-gKf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Your Receipts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRt-54-cWd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Vu2-ND-lRM"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="PzA-e5-1Ib"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oRt-54-cWd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0cG-XG-Id7"/>
+                            <constraint firstItem="oRt-54-cWd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="JXV-hW-MKc"/>
+                            <constraint firstAttribute="trailing" secondItem="oRt-54-cWd" secondAttribute="trailing" id="OSa-Ap-EqW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oRt-54-cWd" secondAttribute="bottom" id="dQM-Eh-L4X"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Your Receipts" id="DJN-GJ-slY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OR3-ue-cRZ">
+                            <connections>
+                                <segue destination="qT1-Ve-hXT" kind="show" id="ox2-tL-oRC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1137" y="352"/>
+        </scene>
+        <!--Add A New Receipt-->
+        <scene sceneID="Q0a-DT-KaR">
+            <objects>
+                <viewController id="qT1-Ve-hXT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pdq-RF-VdL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tx6-uy-vE8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="atj-Xs-CAu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UPR-F6-haZ">
+                                <rect key="frame" x="87" y="109" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="HsT-4r-wqX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFI-LG-OSq">
+                                <rect key="frame" x="87" y="147" width="200" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="2yA-Wy-K7g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose tag(s) for your receipt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYy-Sn-iDk">
+                                <rect key="frame" x="73" y="357" width="229" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-ja-mis">
+                                <rect key="frame" x="52" y="386" width="270" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="GlL-KY-yYJ"/>
+                                    <constraint firstAttribute="width" constant="270" id="Pta-8S-ebn"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rO-WC-IyY">
+                                <rect key="frame" x="14" y="113" width="65" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGL-YL-PXE">
+                                <rect key="frame" x="14" y="181" width="49" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rGL-YL-PXE" firstAttribute="centerY" secondItem="hFI-LG-OSq" secondAttribute="centerY" id="0Aa-zP-gKl"/>
+                            <constraint firstItem="UPR-F6-haZ" firstAttribute="leading" secondItem="2rO-WC-IyY" secondAttribute="trailing" constant="8" id="1c2-rR-QRD"/>
+                            <constraint firstItem="hYy-Sn-iDk" firstAttribute="centerX" secondItem="atj-Xs-CAu" secondAttribute="centerX" id="86v-9j-AOG"/>
+                            <constraint firstItem="2rO-WC-IyY" firstAttribute="centerY" secondItem="UPR-F6-haZ" secondAttribute="centerY" id="H6d-Wi-63V"/>
+                            <constraint firstItem="hYy-Sn-iDk" firstAttribute="top" secondItem="hFI-LG-OSq" secondAttribute="bottom" constant="120" id="Qy6-BJ-kIj"/>
+                            <constraint firstItem="rGL-YL-PXE" firstAttribute="leading" secondItem="2rO-WC-IyY" secondAttribute="leading" id="TFY-Ql-XpH"/>
+                            <constraint firstItem="hFI-LG-OSq" firstAttribute="top" secondItem="UPR-F6-haZ" secondAttribute="bottom" constant="8" id="WQK-iv-1VS"/>
+                            <constraint firstItem="UPR-F6-haZ" firstAttribute="top" secondItem="Pdq-RF-VdL" secondAttribute="bottom" constant="45" id="Wf4-lu-yju"/>
+                            <constraint firstItem="hFI-LG-OSq" firstAttribute="width" secondItem="UPR-F6-haZ" secondAttribute="width" id="bQg-12-BMq"/>
+                            <constraint firstItem="UPR-F6-haZ" firstAttribute="centerX" secondItem="atj-Xs-CAu" secondAttribute="centerX" id="eUj-2b-27y"/>
+                            <constraint firstItem="hFI-LG-OSq" firstAttribute="centerX" secondItem="atj-Xs-CAu" secondAttribute="centerX" id="ioG-w0-oIR"/>
+                            <constraint firstItem="0lx-ja-mis" firstAttribute="centerX" secondItem="atj-Xs-CAu" secondAttribute="centerX" id="jGz-QS-u4U"/>
+                            <constraint firstItem="0lx-ja-mis" firstAttribute="top" secondItem="hYy-Sn-iDk" secondAttribute="bottom" constant="8" id="uqV-lf-Gm5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add A New Receipt" id="D7t-Ru-EE3">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="CYy-ah-mef"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgT-HN-auK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1936.5" y="83.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VtI-a4-al0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pp3-bx-gKf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Rn-CD-3lS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ny8-nq-5vk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5Q-fu-tb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="571"/>
         </scene>
     </scenes>
 </document>
