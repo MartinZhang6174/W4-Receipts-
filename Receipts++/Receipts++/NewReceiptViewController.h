@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewReceiptViewController : UIViewController
+@interface NewReceiptViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end

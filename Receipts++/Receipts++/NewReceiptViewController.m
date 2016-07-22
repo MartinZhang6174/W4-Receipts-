@@ -7,8 +7,18 @@
 //
 
 #import "NewReceiptViewController.h"
+#import "TagPickerView.h"
+#import "Receipt.h"
 
 @interface NewReceiptViewController ()
+
+@property (strong, nonatomic) IBOutlet TagPickerView *scrollPickerView;
+@property (strong, nonatomic) IBOutlet UITextField *amountTextField;
+@property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (strong, nonatomic) IBOutlet UITextField *noteTextField;
+@property (strong, nonatomic) IBOutlet UILabel *pickerSelectionResultDisplayLabel;
+@property (strong, nonatomic) NSString *selectedPickerRowTitle;
+@property (strong, nonatomic) NSArray *tagCollection;
 
 @end
 
@@ -16,22 +26,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tagCollection = [[NSArray alloc] initWithObjects:@"Family", @"Friends", @"Business", nil];
+}
+//- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component __TVOS_PROHIBITED {
+//    
+//}
+
+- (IBAction)doneButtonPressed:(id)sender {
+    Receipt *receipt = [[Receipt alloc] init];
+    
+    if (self.amountTextField.text != nil && self.descriptionTextField.text != nil && self.noteTextField.text != nil && self.selectedPickerRowTitle != nil) {
+        
+    [receipt setValue:self.amountTextField.text forKey:@"amount"];
+    [receipt setValue:self.noteTextField.text forKey:@"note"];
+    [receipt setValue:self.descriptionTextField.text forKey:@"detail"];
+    
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+// Setting up scrolling picker view
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.tagCollection.count;
 }
-*/
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [self.tagCollection objectAtIndex:row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    NSUInteger selectedRow = [self.scrollPickerView selectedRowInComponent:0];
+    self.selectedPickerRowTitle = [[self.scrollPickerView delegate] pickerView:self.scrollPickerView titleForRow:selectedRow forComponent:0];
+    self.pickerSelectionResultDisplayLabel.text = self.selectedPickerRowTitle;
+}
 
 @end
