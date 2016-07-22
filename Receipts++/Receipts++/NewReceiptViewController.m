@@ -8,10 +8,14 @@
 
 #import "NewReceiptViewController.h"
 #import "TagPickerView.h"
+#import "AppDelegate.h"
 #import "Receipt.h"
+#import "Tag.h"
 
 @interface NewReceiptViewController ()
-
+{
+    NSManagedObjectContext *context;
+}
 @property (strong, nonatomic) IBOutlet TagPickerView *scrollPickerView;
 @property (strong, nonatomic) IBOutlet UITextField *amountTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
@@ -28,20 +32,29 @@
     [super viewDidLoad];
     
     self.tagCollection = [[NSArray alloc] initWithObjects:@"Family", @"Friends", @"Business", nil];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    context = appDelegate.managedObjectContext;
 }
 //- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component __TVOS_PROHIBITED {
 //    
 //}
 
 - (IBAction)doneButtonPressed:(id)sender {
-    Receipt *receipt = [[Receipt alloc] init];
-    
     if (self.amountTextField.text != nil && self.descriptionTextField.text != nil && self.noteTextField.text != nil && self.selectedPickerRowTitle != nil) {
+        NSEntityDescription *tagEntityDesc = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:context];
+        NSEntityDescription *receiptEntityDesc = [NSEntityDescription entityForName:@"Receipt" inManagedObjectContext:context];
+        Tag *tag = [[Tag alloc] initWithEntity:tagEntityDesc insertIntoManagedObjectContext:context];
+        Receipt *receipt = [[Receipt alloc] initWithEntity:receiptEntityDesc insertIntoManagedObjectContext:context];
+        receipt.note = self.noteTextField.text;
+        receipt.detail = self.descriptionTextField.text;
+        NSNumber *amountFloatNumber = [NSNumber numberWithFloat:[self.amountTextField.text floatValue]];
+        receipt.amount = amountFloatNumber;
+        [receipt addTagsObject:tag];
         
-    [receipt setValue:self.amountTextField.text forKey:@"amount"];
-    [receipt setValue:self.noteTextField.text forKey:@"note"];
-    [receipt setValue:self.descriptionTextField.text forKey:@"detail"];
-    
+        NSError *error;
+        [context save:&error];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

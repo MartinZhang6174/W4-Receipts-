@@ -1,5 +1,5 @@
 //
-//  Receipt.h
+//  Tag.h
 //  Receipts++
 //
 //  Created by Martin Zhang on 2016-07-21.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Tag;
+@class Receipt;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Receipt : NSManagedObject
+@interface Tag : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -21,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Receipt+CoreDataProperties.h"
+#import "Tag+CoreDataProperties.h"
